@@ -9,36 +9,37 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
     <link rel="stylesheet" href="./css/general.css" />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/queries.css" />
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <script defer src="./js/script.js"></script>
   </head>
   <body>
-<!-- <header class="header nav-open"> -->
-<header class="header">
-  <!-- класс nav-open ↑ для открытия/закрытия мобильной навигации -->
-  <a href="#">
-    <img src="./img/omnifood-logo.png" alt="Omnifood logo" class="logo" />
-  </a>
-  <nav class="main-nav">
-    <ul class="main-nav-list">
-      <li><a class="main-nav-link" href="#">How it works</a></li>
-      <li><a class="main-nav-link" href="#">Meals</a></li>
-      <li><a class="main-nav-link" href="#">Testimonials</a></li>
-      <li><a class="main-nav-link" href="#">Pricing</a></li>
-      <li><a href="#" class="main-nav-link nav-cta">Try fo free</a></li>
-    </ul>
-  </nav>
-  <!-- кнопка мобильной навигации -->
-  <button class="btn-mobile-nav">
-    <ion-icon class="icon-mobile-nav" name="menu-outline"></ion-icon>
-    <ion-icon class="icon-mobile-nav" name="close-outline"></ion-icon>
-  </button>
-</header>
+    <!-- <header class="header nav-open"> -->
+    <header class="header">
+      <!-- класс nav-open ↑ для открытия/закрытия мобильной навигации -->
+      <a href="#">
+        <img src="./img/omnifood-logo.png" alt="Omnifood logo" class="logo" />
+      </a>
+      <nav class="main-nav">
+        <ul class="main-nav-list">
+          <li><a class="main-nav-link" href="#">How it works</a></li>
+          <li><a class="main-nav-link" href="#">Meals</a></li>
+          <li><a class="main-nav-link" href="#">Testimonials</a></li>
+          <li><a class="main-nav-link" href="#">Pricing</a></li>
+          <li><a href="#" class="main-nav-link nav-cta">Try fo free</a></li>
+        </ul>
+      </nav>
+      <!-- кнопка мобильной навигации -->
+      <button class="btn-mobile-nav">
+        <ion-icon class="icon-mobile-nav" name="menu-outline"></ion-icon>
+        <ion-icon class="icon-mobile-nav" name="close-outline"></ion-icon>
+      </button>
+    </header>
     <main>
       <section class="section-hero">
         <div class="hero">
@@ -479,7 +480,7 @@
               </li>
             </ul>
           </div>
-          <p class="footer-copy">Copyright &copy; 2027 by Omnifood, Inc. All rights reserved.</p>
+          <p class="footer-copy">Copyright &copy; <span class="year"></span> by Omnifood, Inc. All rights reserved.</p>
         </div>
 
         <div class="footer-address">
