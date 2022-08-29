@@ -1,0 +1,300 @@
+/* rem and em do NOT depend on html font-size in media-queries!!! Instead, 1rem = 1em = 16px*/
+/* em == тоже самое что rem, только вместо root font-size, em == current font-size. В каких то браузерах есть(были?) баги при использовании rem в media-queries, поэтому будет использовать em (работает точно так же как и rem) */
+
+/* 1344px / 16 == 84em. Используем 1350, потому что есть популярный размер hd-ready 1366 */
+
+/****************************/
+/* BELOW 1344px (Smaller desktops) */
+/****************************/
+
+@media (max-width: 84em) {
+  /* фикс hero-section */
+  .hero {
+    max-width: 120rem;
+  }
+  .heading-primary {
+    font-size: 4.4rem;
+  }
+  /* фикс галереи в отзывах */
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+/****************************/
+/* BELOW 1200px (Landscape Tablets) */
+/****************************/
+
+@media (max-width: 75em) {
+  /* изменяем размер всего, это работает потому что мы везде использовали rem, а не пиксели */
+  html {
+    /* 9px / 16px == 56.25% */
+    font-size: 56.25%;
+  }
+  /* уменьшаем гапы в гридах и h2 h3 тоже уменьшаем (на 1-2 шага) */
+  .grid {
+    row-gap: 6.4rem;
+    column-gap: 4.8rem;
+  }
+  .heading-secondary {
+    font-size: 3.6rem;
+  }
+  .heading-tertiary {
+    font-size: 2.4rem;
+  }
+
+  /* выравниваем лого с остальными элементами (контейнерами) */
+  .header {
+    padding: 0 3.2rem;
+  }
+  /* уменьшаем растояние между элементами внутри hero */
+  .hero {
+    gap: 4.8rem;
+  }
+  /* уменьшаем расстояние между главной навигацией */
+  .main-nav-list {
+    gap: 3.2rem;
+  }
+  /* уменьшаем паддинг в отзывах */
+  .testimonials-container {
+    padding: 9.6rem 3.2rem;
+  }
+}
+
+/****************************/
+/* BELOW 944px (Tablets) */
+/****************************/
+
+@media (max-width: 59em) {
+  /* уменьшая размер всего на ~10% */
+  html {
+    /* 8px / 16px == 50% */
+    font-size: 50%;
+  }
+  /* заделяем секцию хиро по вертикали (по горизонтали два элемента больше не влазят) - для этого просто сетку делаем вместо двух колонок одну(оставляем только один 1fr) */
+  .hero {
+    grid-template-columns: 1fr;
+    /* изменяем спейсинги */
+    padding: 0 8rem;
+    gap: 6.4rem;
+  }
+  /* выравниваем оба элемента по центру (картинка тоже будет по центру с помощью text-align, потому что картинка inline) */
+  .hero-text-box,
+  .hero-img-box {
+    text-align: center;
+  }
+  .hero-img {
+    width: 60%;
+  }
+  /* выравниваем по центру flex element и изменяем спейсинги*/
+  .delivered-meals {
+    justify-content: center;
+    margin-top: 3.2rem;
+  }
+  /* уменьшаем логотипы */
+  .logos img {
+    height: 2.4rem;
+  }
+  .step-number {
+    font-size: 7.4rem;
+  }
+  /* уменьшаем паддинги в карточках */
+  .meal-content {
+    padding: 2.4rem 3.2rem 3.2rem 3.2rem;
+  }
+  /* разделяем отзывы и галерею в одну колонку */
+  .section-testimonials {
+    grid-template-columns: 1fr;
+  }
+  /* делаем галерею из 6 калонок */
+  .gallery {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  /* изменяем соотношение контент - картинка в cta секции */
+  .cta {
+    grid-template-columns: 3fr 2fr;
+  }
+  /* делаем форму в одну колонку */
+  .cta-form {
+    grid-template-columns: 1fr;
+  }
+  .cta .btn {
+    margin-top: 1.2rem;
+  }
+  /* MOBILE NAVIGATION */
+
+  /* показываем кнопку мобильной навигации */
+  .btn-mobile-nav {
+    display: block;
+  }
+  .main-nav {
+    /* вынимаем нашу навигацию из разметки, и позиционируем её абсолютно (relative  указываем родителю header) */
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* выравниваем навигацию по центру и задаем ширину и высоту на весь экран*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.97);
+
+    /* мы хотим что бы анимация выхода и захода меню - была справа налево, поэтому изначально переместим меню справа за экран */
+    transform: translateX(100%);
+    /* но теперь наше меню просто находится справа и мы можем проскролить на него, что бы этого не было задаем body и html overflow-x: hidden */
+    /* ease-in - стиль анимации */
+    transition: all 0.5s ease-in;
+
+    /* По дефолту это меню должно быть спрятано, но мы не можем это сделать при помощь display: none; потому что это запрещает либые анимации transition, поэтому будем использовать opacity */
+
+    /* opacity в отличии от display:none, не убирает элемент полностью, а только визуально, поэтому нужно сделать несколько шагов, что бы убрать элемент полностью: */
+    /* 1) Hide it visually */
+    opacity: 0;
+    /* 2) Make it unaccessible to mouse and keyboard */
+    pointer-events: none;
+    /* 3) Hide it from screen readers(for blind people) */
+    visibility: hidden;
+  }
+  /* добавляем в html в родительский элемент header ещё один класс nav-open, таким образом потом в JS можно будет убирать или возвращать на место этот класс по клику на кнопку и соответсвенно прятать-показывать мобильную навигацию */
+
+  /* если существует nav-open - этот стиль будет работать, если нет то нет: */
+  /* показываем меню если существует класс nav-open */
+  .nav-open .main-nav {
+    /* set back to normal */
+    opacity: 100;
+    pointer-events: auto;
+    visibility: visible;
+    transform: translateX(0);
+  }
+  /* показываем иконку закрытия и убираем иконку мобильного меню, если существует класс nav-open */
+  .nav-open .icon-mobile-nav[name='close-outline'] {
+    display: block;
+  }
+  .nav-open .icon-mobile-nav[name='menu-outline'] {
+    display: none;
+  }
+
+  /* делаем навигацию вертикальной */
+  .main-nav-list {
+    flex-direction: column;
+    gap: 4.8rem;
+  }
+  .main-nav-link:link,
+  .main-nav-link:visited {
+    font-size: 3rem;
+  }
+}
+
+/****************************/
+/* BELOW 704px (Smaller tablets) */
+/****************************/
+
+@media (max-width: 44em) {
+  /* везде где у нас 3 или 4 колонки, хочу при данной ширине сделать - 2 колонки, для этого можно просто изменить хелпер классы */
+  .grid--3-cols,
+  .grid--4-cols {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  /* выравниваю третью колонку, что бы она была по центру */
+  .diets {
+    grid-column: 1 / -1;
+    justify-self: center;
+  }
+
+  /* делаем наши карточки с pricing plans 100% в ширину вместо 75 */
+  .pricing-plan {
+    width: 100%;
+  }
+  /* уменьшая растояние от всех h2 заголовков */
+  .heading-secondary {
+    margin-bottom: 4.8rem;
+  }
+  /* footer */
+  /* мы хотим что бы наши 5 колонок теперь размещались так - 3 маленьких сверху, занимают равное расстояние, 2 большие снизу - занимаются равное расстояние. Это можно сделать задав количество колонок - 6, верхние пусть занимают каждая по 2 колонки(grid-column: span 2), а нижние по 3 */
+  .footer-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  /* footer nav - маленьких колонки которые должны быть сверху */
+  .footer-nav {
+    grid-row: 1;
+    grid-column: span 2;
+    margin-bottom: 3.2rem;
+  }
+  .footer-logo,
+  .footer-address {
+    grid-column: span 3;
+  }
+}
+/****************************/
+/* BELOW 544px (Mobile phones) */
+/****************************/
+
+@media (max-width: 34em) {
+  .grid {
+    row-gap: 4.8rem;
+  }
+  /* делаем всё в одну колонку */
+  .grid--2-cols,
+  .grid--3-cols,
+  .grid--4-cols {
+    grid-template-columns: 1fr;
+  }
+  /* изменяем кнопки - делаем их выше и уже */
+  .btn:link,
+  .btn:visited {
+    padding: 2.4rem 1.6rem;
+  }
+  .hero {
+    padding: 0 3.2rem;
+  }
+  .section-hero {
+    padding: 2.4rem 0 6.4rem 0;
+  }
+  .hero-img {
+    width: 80%;
+  }
+  .logos img {
+    height: 1.2rem;
+  }
+  /* меняем местами картинки с текстом */
+  /* :nth-child(2) - не имеет никакого отношения к класу step-img-box, в данном случае мы не выбираем второй элемент с классом step-img-box, а выбираем просто второй элемент у родителя класса step-img-box */
+  .step-img-box:nth-child(2) {
+    grid-row: 1;
+  }
+  .step-img-box:nth-child(6) {
+    grid-row: 5;
+  }
+  /* мы хотим картинки подвинуть ближе к соответствующему тексту, но мы не можем задать разный gap разным элементам, поэтому проще всего подвинуть картинки transform: translate() */
+  .step-img-box {
+    transform: translateY(2.4rem);
+  }
+  /* делаем одну колонку отзывам */
+  .testimonials {
+    grid-template-columns: 1fr;
+  }
+  /* делаем галерею 3*4 */
+  .gallery {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+  }
+
+  /* делаем CTA в одну колонку, ставим картинку первой, и что бы она отобразилась - задаем ей высоту */
+  .cta {
+    grid-template-columns: 1fr;
+  }
+  .cta-text-box {
+    padding: 3.2rem;
+  }
+  .cta-img-box {
+    height: 32rem;
+    grid-row: 1;
+  }
+}
+
+/* 
+- Font sizes (px): 
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+
+- Spacing system (px):
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+*/
