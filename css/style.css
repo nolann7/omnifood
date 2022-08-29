@@ -554,7 +554,8 @@ footer {
   display: flex;
   gap: 2.4rem;
 }
-.footer-social-links ion-icon {
+.footer-social-links ion-icon,
+.ionicon {
   width: 2.4rem;
   height: 2.4rem;
 }
