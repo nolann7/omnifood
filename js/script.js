@@ -4,11 +4,69 @@ const yearEl = document.querySelector('.year');
 yearEl.textContent = currentYear;
 
 ///////////////////////////////////////////
+// Making mobile menu work
 const headerEl = document.querySelector('.header');
 const mobileMenuBtnOpenEl = document.querySelector('.btn-mobile-nav');
 mobileMenuBtnOpenEl.addEventListener('click', function () {
   headerEl.classList.toggle('nav-open');
 });
+////////////////////////////////////////////////
+// smooth scrolling with js (это может быть уже и не нужно потому что safari наконец то поддерживает scroll-behavior: smooth в css)
+document.querySelectorAll('a:link').forEach((link) => {
+  link.addEventListener('click', function (e) {
+    e.preventDefault();
+    const href = this.getAttribute('href');
+    console.log(href);
+
+    // Scroll to top
+    if (href === '#') {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth',
+      });
+    }
+    // Scroll to element with id
+    if (href !== '#' && href !== '' && href.startsWith('#')) {
+      document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Close mobile menu
+    if (link.classList.contains('main-nav-link')) {
+      headerEl.classList.remove('nav-open');
+    }
+  });
+});
+
+///////////////////////////////////////////////////////////
+// Sticky navigation
+const navEl = document.querySelector('.header');
+const sectionHeroEl = document.querySelector('.section-hero');
+
+const observer = new IntersectionObserver(
+  function (entires) {
+    const entry = entires[0];
+    console.log(entry);
+    if (entry.isIntersecting === false) {
+      // добавляем высоту header, потому что мы его вынимаем из html, и получается скачок, что бы этого не было просто добавляем высоту header в margintop для section-hero
+      sectionHeroEl.style.marginTop = navEl.offsetHeight + 'px';
+      // добавляем класс для прилипания навигации
+      navEl.classList.add('sticky');
+    }
+    if (entry.isIntersecting === true) {
+      sectionHeroEl.style.marginTop = 0;
+      navEl.classList.remove('sticky');}
+  },
+  {
+    // in the viewport
+    root: null,
+    // 0% of hero section in the viewport
+    threshold: 0,
+    // мы хотим что бы наша навигация появлялась за 80пикселей до того как hero section полностью спрячется (80 px - высота навигации)
+    rootMargin: '-80px',
+  },
+);
+observer.observe(sectionHeroEl);
 
 ///////////////////////////////////////////////////////////
 // Fixing flexbox gap property missing in some Safari versions
