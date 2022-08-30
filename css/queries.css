@@ -139,13 +139,17 @@
     justify-content: center;
     width: 100%;
     height: 100vh;
-    background-color: rgba(255, 255, 255, 0.97);
+    /* https://caniuse.com/?search=backdrop-filter */
+    /* prefix for safari */
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.9);
 
     /* мы хотим что бы анимация выхода и захода меню - была справа налево, поэтому изначально переместим меню справа за экран */
     transform: translateX(100%);
     /* но теперь наше меню просто находится справа и мы можем проскролить на него, что бы этого не было задаем body и html overflow-x: hidden */
     /* ease-in - стиль анимации */
-    transition: all 0.5s ease-in;
+    transition: all 0.3s ease-in;
 
     /* По дефолту это меню должно быть спрятано, но мы не можем это сделать при помощь display: none; потому что это запрещает либые анимации transition, поэтому будем использовать opacity */
 
@@ -300,3 +304,52 @@
 - Spacing system (px):
 2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
 */
+
+.no-flexbox-gap .main-nav-list li:not(:last-child) {
+  margin-right: 4.8rem;
+}
+
+.no-flexbox-gap .list-item:not(:last-child) {
+  margin-bottom: 1.6rem;
+}
+
+.no-flexbox-gap .list-icon:not(:last-child) {
+  margin-right: 1.6rem;
+}
+
+.no-flexbox-gap .delivered-faces {
+  margin-right: 1.6rem;
+}
+
+.no-flexbox-gap .meal-attribute:not(:last-child) {
+  margin-bottom: 2rem;
+}
+
+.no-flexbox-gap .meal-icon {
+  margin-right: 1.6rem;
+}
+
+.no-flexbox-gap .footer-row div:not(:last-child) {
+  margin-right: 6.4rem;
+}
+
+.no-flexbox-gap .social-links li:not(:last-child) {
+  margin-right: 2.4rem;
+}
+
+.no-flexbox-gap .footer-nav li:not(:last-child) {
+  margin-bottom: 2.4rem;
+}
+
+@media (max-width: 75em) {
+  .no-flexbox-gap .main-nav-list li:not(:last-child) {
+    margin-right: 3.2rem;
+  }
+}
+
+@media (max-width: 59em) {
+  .no-flexbox-gap .main-nav-list li:not(:last-child) {
+    margin-right: 0;
+    margin-bottom: 4.8rem;
+  }
+}
