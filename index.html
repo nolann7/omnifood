@@ -443,20 +443,21 @@
                 pause anytime. And the first meal is on us!
               </p>
 
-              <form action="#" class="cta-form">
+              <!-- <form action="#" class="cta-form"> -->
+              <form name="sign-up" class="cta-form" netlify>
                 <div>
                   <label for="form-name">Full Name</label>
-                  <input type="text" id="form-name" placeholder="John Smith" required />
+                  <input type="text" id="form-name" placeholder="John Smith" name="full-name" required />
                 </div>
 
                 <div>
                   <label for="form-email">Email adress</label>
-                  <input type="email" id="form-email" placeholder="me@example.com" required />
+                  <input type="email" id="form-email" placeholder="me@example.com" name="email" required />
                 </div>
 
                 <div>
                   <label for="form-select">Where did you hear from us?</label>
-                  <select id="form-select" required>
+                  <select id="form-select" name="form-select" required>
                     <option value="">Please chose one option:</option>
                     <option value="friends">Friends or family</option>
                     <option value="youtube">Youtube videos</option>
