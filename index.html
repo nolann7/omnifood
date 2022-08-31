@@ -3,9 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <!-- Always include this line of code for responsive disign -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Omnifood</title>
+    <meta
+      name="description"
+      content="Omnifood is an AI powered food subscription that will make you eat healthy again, 365 days a year. It's taylored to your personal tastes and nutritional needs."
+    />
+
+    <title>Omnifood &mdash; Never cook again!</title>
+    <link rel="shortcut icon" href="./img/favicon-64.png" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="./img/apple-icon-touch-180.png" />
+    <link rel="manifest" href="manifest.webmanifest" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -22,7 +30,7 @@
   </head>
   <body>
     <!-- <header class="header nav-open"> -->
-  <header class="header sticky">
+    <header class="header sticky">
       <!-- класс nav-open ↑ для открытия/закрытия мобильной навигации -->
       <a href="#">
         <img src="./img/omnifood-logo.png" alt="Omnifood logo" class="logo" />
@@ -66,11 +74,16 @@
             </div>
           </div>
           <div class="hero-img-box">
-            <img
-              src="./img/hero.png"
-              alt="A wooman enjoing food, meals in storage container and food bowls on table"
-              class="hero-img"
-            />
+            <!-- если браузер поддерживает webp - будет использоваться webp, если нет - png, если браузер не поддерживает picture - то тоже будет использоваться png, в остальном польностью работает как обычный тэк img, классы и alt также задается в img -->
+            <picture>
+              <source srcset="./img/heroWebP.webp" type="image/webp" />
+              <source srcset="./img/heroPng.png" type="image/png" />
+              <img
+                src="./img/heroPng.png"
+                alt="A wooman enjoing food, meals in storage container and food bowls on table"
+                class="hero-img"
+              />
+            </picture>
           </div>
         </div>
       </section>
