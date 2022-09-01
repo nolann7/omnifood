@@ -149,7 +149,7 @@
     transform: translateX(100%);
     /* но теперь наше меню просто находится справа и мы можем проскролить на него, что бы этого не было задаем body и html overflow-x: hidden */
     /* ease-in - стиль анимации */
-    transition: all 0.3s ease-in;
+    transition: transform 0.4s ease-in;
 
     /* По дефолту это меню должно быть спрятано, но мы не можем это сделать при помощь display: none; потому что это запрещает либые анимации transition, поэтому будем использовать opacity */
 
